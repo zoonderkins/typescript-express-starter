@@ -1,15 +1,23 @@
-import express from 'express';
+import * as express from 'express';
+import * as bodyParser from 'body-parser'; //used to parse the form data that you pass in the request
+class App {
 
-// Our Express APP config
-const app = express();
-app.set("port", process.env.PORT || 3000);
+    public app: express.Application;
 
-// API Endpoints
-app.get('/', (req: any, res: any) => {
-  console.log('hi')
-  res.send("hi")
-})
+    constructor() {
+        this.app = express(); //run the express instance and store in app
+        this.config();
+    }
 
-const server = app.listen(app.get("port"), () => {
-  console.log("App is running on http://localhost:%d", app.get("port"))
-});
+    private config(): void {
+        // support application/json type post data
+        this.app.use(bodyParser.json());
+        //support application/x-www-form-urlencoded post data
+        this.app.use(bodyParser.urlencoded({
+            extended: false
+        }));
+    }
+
+}
+
+export default new App().app;
