@@ -8,10 +8,11 @@ An easy way to run typescript3 on express
 3. ``` npm run start ```
 
 # Project structure
-
+```bash
 .
 ├── src
 │   ├── app.ts
 ├── node_modules
 ├── package.json
 └── tsconfig.json
+```
